@@ -11,7 +11,7 @@ import tkinter as tk
 os.system('color')
 
 
-# Вкладка 9.Рисуємо графіки
+# code for graphs
 
 def grafiki():
     my_imput = input("Введіть середнє значення через пробіл:")
@@ -34,7 +34,7 @@ def grafiki():
     ax.set_xticklabels(xlabels)
     plt.show()
 
-
+# Code for data normality check
 def normality():
     while True:
         x = input("\033[8mEnter data separated by spaces: \033[0m")
@@ -100,7 +100,7 @@ def normality():
                 print("Stick to the rules")
 
 
-
+# Code to find data that is probably was just a mistake (test Shovene)
 def misses():
     while True:
         x = input("\033[8mEnter data separated by spaces: \033[0m")
@@ -124,9 +124,9 @@ def misses():
                 # Стандартне відхилення (Додому формула)
                 sd_d2 = var_d2 ** 0.5
                 # Shovenist test
-                shovenist_max = (max_d - mean_d)/sd_d2
-                shovenist_min = (mean_d - min_d) / sd_d2
-                shovidovi = {
+                shov_max = (max_d - mean_d)/sd_d2
+                shov_min = (mean_d - min_d) / sd_d2
+                shovi = {
                     4:  [1.64],
                     5: [1.68],
                     6: [1.73],
@@ -137,12 +137,12 @@ def misses():
                     11: [2.00],
                     12: [2.03]
                 }
-                ShoviDovi_out = shovidovi[n_d][0]
-                if shovenist_max >= ShoviDovi_out:
+                Shovi_out = shovi[n_d][0]
+                if shov_max >= Shovi_out:
                     print(f"Shovene Test: max value - {max_d} - is an outlier")
                 else:
                     print(f"Shovene Test: max value - {max_d} - is not an outlier")
-                if shovenist_min >= ShoviDovi_out:
+                if shov_min >= Shovi_out:
                     print(f"Shovene Test: min value - {min_d} - is an outlier")
                 else:
                     print(f"Shovene Test: min value - {min_d} - is not an outlier")
@@ -150,9 +150,9 @@ def misses():
                  (f"Number of data:  {n_d}\n"
                   f"Max value: {max_d}\n"
                   f"Min value: {min_d}\n"
-                  f"Shovene value for min: {round(shovenist_min, 2)}\n"
-                  f"Shovene value for max: {round(shovenist_max, 2)}\n"
-                  f"Shovene crit value: {ShoviDovi_out}"))
+                  f"Shovene value for min: {round(shov_min, 2)}\n"
+                  f"Shovene value for max: {round(shov_max, 2)}\n"
+                  f"Shovene crit value: {Shovi_out}"))
                 #Dikson test
                 if n_d < 8:
                     d_min = (sort_d[1] - sort_d[0]) / (sort_d[-1] - sort_d[0])
@@ -161,7 +161,7 @@ def misses():
                     d_min = (sort_d[1] - sort_d[0]) / (sort_d[-2] - sort_d[0])
                     d_max = (sort_d[-1] - sort_d[-2]) / (sort_d[-1] - sort_d[1])
                 # Dickson test
-                dick_dic = {
+                dik_dic = {
                     4: [0.765],
                     5: [0.642],
                     6: [0.560],
@@ -170,12 +170,12 @@ def misses():
                     9: [0.437],
                     10: [0.412]
                 }
-                dick_out = dick_dic[n_d][0]
-                if max_d >= dick_out:
+                dik_out = dik_dic[n_d][0]
+                if max_d >= dik_out:
                     print(f"Dickson Test: max value - {max_d} - is an outlier")
                 else:
                     print(f"Dickson Test: max value - {max_d} - is not an outlier")
-                if min_d >= dick_out:
+                if min_d >= dik_out:
                     print(f"Dickson Test: min value - {min_d} - is an outlier")
                 else:
                     print(f"Dickson Test: min value - {min_d} - is not an outlier")
@@ -184,7 +184,7 @@ def misses():
                       f"Мінімальне значення: {min_d}\n"
                       f"Dickson value for min: {round(min_d, 2)}\n"
                       f"Dickson value for max: {round(max_d, 2)}\n"
-                      f"Dickson crit value: {dick_out}"))
+                      f"Dickson crit value: {dik_out}"))
                 #Irvin test
                 irvii_max = (max_d - sort_d[n_d - 1]) / sd_d2
                 irvii = {
